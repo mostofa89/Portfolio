@@ -124,4 +124,4 @@ if (footerText) {
     footerText.innerHTML = `&copy; ${currentYear} Mostofa Kamal. All rights reserved.`; 
 }
 
-console.log('Portfolio website loaded successfully! 🚀');
+console.log('Portfolio website loaded successfully!');
