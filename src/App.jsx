@@ -14,9 +14,9 @@ const NAV_ITEMS = [
 ];
 
 const HERO_STATS = [
-  { value: "6+", label: "Portfolio projects" },
-  { value: "10", label: "Core technologies" },
-  { value: "100%", label: "Responsive layout" },
+  { value: "6+", label: "Projects" },
+  { value: "10", label: "Technologies" },
+  { value: "Full", label: "Stack focus" },
 ];
 
 const SKILL_GROUPS = [
@@ -58,11 +58,13 @@ const SKILL_GROUPS = [
         name: "Django",
         level: 84,
         icon: `${ICON_BASE}/django/django-plain.svg`,
+        darkIcon: true,
       },
       {
         name: "Django REST Framework",
         level: 80,
         icon: `${ICON_BASE}/django/django-plain.svg`,
+        darkIcon: true,
       },
       {
         name: "MySQL",
@@ -331,7 +333,11 @@ function SkillCard({ group }) {
           <div key={skill.name} className="skill-item">
             <div className="skill-row">
               <span className="skill-name">
-                <img src={skill.icon} alt={`${skill.name} icon`} />
+                <span
+                  className={`skill-icon ${skill.darkIcon ? "skill-icon-light" : ""}`}
+                >
+                  <img src={skill.icon} alt={`${skill.name} icon`} />
+                </span>
                 {skill.name}
               </span>
               <span>{skill.level}%</span>
@@ -529,8 +535,8 @@ export default function App() {
           <div className="container hero-grid">
             <div className="hero-copy scroll-animate">
               <h1>
-                Abu Hena Mostofa Kamal Joy builds <span>animated</span> web
-                experiences.
+                Abu Hena Mostofa Kamal Joy builds{" "}
+                <span>backend-powered</span> web applications.
               </h1>
               <p className="hero-text">
                 Computer Science and Engineering student focused on building
@@ -652,8 +658,8 @@ export default function App() {
           id="skills"
           alternate
           eyebrow="Skills"
-          title="Real programming icons with animated progress"
-          description="Each skill uses an official Devicon SVG and reveals on scroll with animated progress bars."
+          title="Frontend, backend, and tooling I use to build practical products"
+          description="A focused stack for responsive interfaces, Django APIs, database-backed features, and reliable deployment workflows."
         >
           <div className="skills-grid">
             {SKILL_GROUPS.map((group) => (
@@ -665,8 +671,8 @@ export default function App() {
         <Section
           id="projects"
           eyebrow="Projects"
-          title="Project cards with animated image previews"
-          description="Each project includes a visual preview, short summary, stack, key features, live link, and source link."
+          title="Selected work across React, Django, DRF, and database-driven apps"
+          description="A compact view of the projects I use to practice product thinking, clean UI, backend structure, and deployment."
         >
           <div className="project-grid">
             {PROJECTS.map((project) => (
@@ -718,8 +724,8 @@ export default function App() {
           id="contact"
           alternate
           eyebrow="Contact"
-          title="Simple contact flow for email, social links, and direct messages"
-          description="Visitors can use the links below or submit the form to start an email draft instantly."
+          title="Let’s talk about projects, feedback, or learning opportunities"
+          description="Reach me by email, GitHub, LinkedIn, or send a short message directly from this page."
         >
           <div className="contact-grid">
             <div className="contact-side scroll-animate">
