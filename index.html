@@ -21,7 +21,12 @@
     <div id="root"></div>
     <script>
       (function () {
-        const isLocalhost = ["localhost", "127.0.0.1", "::1"].includes(location.hostname);
+        const isDevServer = location.hostname === "localhost" && location.port === "3000";
+
+        if (location.pathname === "/Portfolio/docs" || location.pathname === "/Portfolio/docs/") {
+          location.replace("/Portfolio/");
+          return;
+        }
 
         const injectStylesheet = (href) =>
           new Promise((resolve, reject) => {
@@ -41,37 +46,15 @@
           await import(bundleUrl.href);
         };
 
-        if (isLocalhost) {
+        if (isDevServer) {
           import("/src/main.jsx");
           return;
         }
 
-        const rootBundleUrl = new URL("assets/app.js", location.href);
-
-        fetch(rootBundleUrl, { method: "HEAD", cache: "no-store" })
-          .then((response) => {
-            if (response.ok) {
-              return loadProductionBundle();
-            }
-
-            if (location.pathname === "/Portfolio/" || location.pathname === "/Portfolio") {
-              location.replace("./docs/");
-              return;
-            }
-
-            return loadProductionBundle();
-          })
-          .catch(() => {
-            if (location.pathname === "/Portfolio/" || location.pathname === "/Portfolio") {
-              location.replace("./docs/");
-              return;
-            }
-
-            loadProductionBundle().catch((error) => {
-              console.error(error);
-              document.body.innerHTML =
-                '<pre style="color:#e0e7ff;padding:2rem;font-family:monospace">Unable to load the production bundle.</pre>';
-            });
+        loadProductionBundle().catch((error) => {
+          console.error(error);
+          document.body.innerHTML =
+            '<pre style="color:#e0e7ff;padding:2rem;font-family:monospace">Unable to load the production bundle.</pre>';
           });
       })();
     </script>
