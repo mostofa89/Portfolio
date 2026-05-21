@@ -19,44 +19,6 @@
   </head>
   <body>
     <div id="root"></div>
-    <script>
-      (function () {
-        const isDevServer = location.hostname === "localhost" && location.port === "3000";
-
-        if (location.pathname === "/Portfolio/docs" || location.pathname === "/Portfolio/docs/") {
-          location.replace("/Portfolio/");
-          return;
-        }
-
-        const injectStylesheet = (href) =>
-          new Promise((resolve, reject) => {
-            const link = document.createElement("link");
-            link.rel = "stylesheet";
-            link.href = href;
-            link.onload = resolve;
-            link.onerror = reject;
-            document.head.appendChild(link);
-          });
-
-        const loadProductionBundle = async () => {
-          const bundleUrl = new URL("assets/app.js", location.href);
-          const stylesheetUrl = new URL("assets/app.css", location.href);
-
-          await injectStylesheet(stylesheetUrl.href);
-          await import(bundleUrl.href);
-        };
-
-        if (isDevServer) {
-          import("/src/main.jsx");
-          return;
-        }
-
-        loadProductionBundle().catch((error) => {
-          console.error(error);
-          document.body.innerHTML =
-            '<pre style="color:#e0e7ff;padding:2rem;font-family:monospace">Unable to load the production bundle.</pre>';
-          });
-      })();
-    </script>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
