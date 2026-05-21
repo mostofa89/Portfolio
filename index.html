@@ -19,6 +19,61 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      (function () {
+        const isLocalhost = ["localhost", "127.0.0.1", "::1"].includes(location.hostname);
+
+        const injectStylesheet = (href) =>
+          new Promise((resolve, reject) => {
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = href;
+            link.onload = resolve;
+            link.onerror = reject;
+            document.head.appendChild(link);
+          });
+
+        const loadProductionBundle = async () => {
+          const bundleUrl = new URL("assets/app.js", location.href);
+          const stylesheetUrl = new URL("assets/app.css", location.href);
+
+          await injectStylesheet(stylesheetUrl.href);
+          await import(bundleUrl.href);
+        };
+
+        if (isLocalhost) {
+          import("/src/main.jsx");
+          return;
+        }
+
+        const rootBundleUrl = new URL("assets/app.js", location.href);
+
+        fetch(rootBundleUrl, { method: "HEAD", cache: "no-store" })
+          .then((response) => {
+            if (response.ok) {
+              return loadProductionBundle();
+            }
+
+            if (location.pathname === "/Portfolio/" || location.pathname === "/Portfolio") {
+              location.replace("./docs/");
+              return;
+            }
+
+            return loadProductionBundle();
+          })
+          .catch(() => {
+            if (location.pathname === "/Portfolio/" || location.pathname === "/Portfolio") {
+              location.replace("./docs/");
+              return;
+            }
+
+            loadProductionBundle().catch((error) => {
+              console.error(error);
+              document.body.innerHTML =
+                '<pre style="color:#e0e7ff;padding:2rem;font-family:monospace">Unable to load the production bundle.</pre>';
+            });
+          });
+      })();
+    </script>
   </body>
 </html>
