@@ -1,61 +1,76 @@
-﻿# Personal Portfolio Website
+# Portfolio — Mostofa Kamal Joy
 
-This is my personal portfolio website built using React and modern CSS. The website showcases my skills, education, projects, experience, and contact information in a clean and responsive design.
+An animated, modern portfolio built with **React 18**, **Vite**, **Tailwind CSS**, and **Framer Motion**. Deployed automatically to GitHub Pages.
+
+🔗 **Live:** https://mostofa89.github.io/Portfolio/
+
+---
 
 ## Features
 
-- Modern responsive design
-- Dark purple animated portfolio theme
-- Home, About, Skills, Projects, Education, Experience, and Contact sections
-- Project cards with technologies, features, GitHub links, and live preview links
-- Smooth single-page navigation
-- Animated hero, floating tech badges, glowing cards, and progress bars
-- CV download option
-- Contact form and social profile links
-- GitHub Pages-ready Vite configuration
+- ⚡ Vite + React 18 + Tailwind CSS
+- 🎨 Framer Motion animations (page entrance, scroll reveal, hover, marquee)
+- 🌈 Animated gradient orbs and grid background
+- 🎯 Cursor spotlight effect
+- ⌨️ Typewriter hero text
+- 📱 Fully responsive (mobile menu, adaptive layouts)
+- 🚀 GitHub Actions auto-deploy
 
-## Technologies Used
+---
 
-- React.js
-- JavaScript
-- HTML5
-- CSS3
-- Vite
-- Git
-- GitHub Pages
-
-## Live Demo
-
-https://mostofa89.github.io/Portfolio
-
-## Quick Start
+## Local Development
 
 ```bash
 npm install
-npm run dev
+npm run dev          # http://localhost:3000
+npm run build        # production build → ./dist
+npm run preview      # preview the production build
 ```
 
-## Build
+---
 
-```bash
-npm run build
+## Deployment
+
+This repo auto-deploys to GitHub Pages via `.github/workflows/deploy.yml` on every push to `main`.
+
+### One-time setup
+
+1. Push the code to **`https://github.com/<your-user>/Portfolio`**
+2. In **Settings → Pages → Build and deployment → Source**, choose **GitHub Actions**
+3. Push to `main` — the workflow builds and deploys automatically
+
+> ⚠️ The repo name **must** be `Portfolio` (capital P), or update `base` in `vite.config.js` to match your repo name.
+
+---
+
+## Project Structure
+
+```
+src/
+├── App.jsx                   # Layout + active section observer
+├── main.jsx                  # Entry
+├── index.css                 # Tailwind + custom styles
+├── data/
+│   └── portfolio.js          # All content (edit me!)
+└── components/
+    ├── Navbar.jsx
+    ├── AnimatedBackground.jsx
+    ├── CursorSpotlight.jsx
+    ├── Hero.jsx
+    ├── Marquee.jsx
+    ├── About.jsx
+    ├── Skills.jsx
+    ├── Projects.jsx
+    ├── Timeline.jsx
+    ├── Contact.jsx
+    └── Footer.jsx
+public/
+├── joy.jpg                   # profile photo
+└── Mostofa_Kamal_Joy_Improved_CV.pdf
 ```
 
-## GitHub Pages Deployment
+---
 
-This project is ready for GitHub Pages deployment through GitHub Actions.
+## Editing Your Content
 
-1. Push changes to the `main` branch.
-2. In GitHub, open repository **Settings > Pages**.
-3. Set **Build and deployment > Source** to **GitHub Actions**.
-4. The workflow in `.github/workflows/static.yml` will build the Vite app and deploy the `dist` folder.
-
-The Vite base path is configured for:
-
-```text
-https://mostofa89.github.io/Portfolio/
-```
-
-## Project Summary
-
-Personal Portfolio Website is a modern and responsive web application built with React. It represents my personal brand, academic background, technical skills, and software development projects. The website includes sections for home, about, skills, projects, education, experience, and contact. It is designed with a clean professional UI and can be deployed using GitHub Pages for public access.
+Open `src/data/portfolio.js` — everything (projects, skills, education, contact links, hero text) lives in that one file.
