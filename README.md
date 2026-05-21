@@ -23,7 +23,7 @@ An animated, modern portfolio built with **React 18**, **Vite**, **Tailwind CSS*
 ```bash
 npm install
 npm run dev          # http://localhost:3000
-npm run build        # production build → ./dist
+npm run build        # production build → ./docs
 npm run preview      # preview the production build
 ```
 
@@ -31,17 +31,17 @@ npm run preview      # preview the production build
 
 ## Deployment
 
-This repo auto-deploys to GitHub Pages via `.github/workflows/deploy.yml` on every push to `main`.
+This repo auto-deploys to GitHub Pages via `.github/workflows/deploy.yml` on every push to `main`. The Vite build writes production files to `docs/` so GitHub Pages can also publish the built site from the `main` branch `/docs` folder.
 
 ### One-time setup
 
 1. Push the code to **`https://github.com/<your-user>/Portfolio`**
-2. In **Settings → Pages → Build and deployment → Source**, choose **GitHub Actions**
+2. In **Settings → Pages → Build and deployment → Source**, choose **GitHub Actions** or publish from branch `main` with folder `/docs`
 3. Push to `main` — the workflow builds and deploys automatically
 
-Do not publish from the `main` branch root. Branch publishing serves the Vite source `index.html`, which points at `/src/main.jsx` instead of the production bundle and leaves GitHub Pages with a blank app screen.
+Do not publish from the `main` branch root. Branch publishing from `/` serves the Vite source `index.html`, which points at `/src/main.jsx` instead of the production bundle and leaves GitHub Pages with a blank app screen.
 
-If the page is blank after a workflow run, switch the Pages source to **GitHub Actions** and rerun **Deploy portfolio to GitHub Pages** from the Actions tab.
+If the page is blank after a workflow run, switch the Pages source to **GitHub Actions** or branch `main` folder `/docs`, then rerun **Deploy portfolio to GitHub Pages** from the Actions tab.
 
 > ⚠️ The repo name **must** be `Portfolio` (capital P), or update `base` in `vite.config.js` to match your repo name.
 
