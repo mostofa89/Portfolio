@@ -16,10 +16,35 @@
       rel="stylesheet"
     />
     <title>Abu Hena Mostofa Kamal Joy · Full Stack Developer</title>
-    <script type="module" crossorigin src="/Portfolio/assets/index-CvFQcSO4.js"></script>
-    <link rel="stylesheet" crossorigin href="/Portfolio/assets/index-DEU-OvIX.css">
+    <script type="module" crossorigin src="/Portfolio/assets/index.js"></script>
+    <link rel="stylesheet" crossorigin href="/Portfolio/assets/index.css">
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      (function () {
+        const isViteDev = (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.hostname === '::1') && (location.port === '3000');
+        if (!isViteDev) {
+          // Block the static module script below from executing in production
+          const next = document.currentScript.nextElementSibling;
+          if (next && next.tagName === 'SCRIPT' && next.type === 'module' && next.src && next.src.includes('/src/main.jsx')) {
+            next.type = 'javascript/blocked';
+          }
+
+          const cssPath = '/Portfolio/' + 'assets/' + 'index.css';
+          const jsPath = '/Portfolio/' + 'assets/' + 'index.js';
+
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = cssPath;
+          document.head.appendChild(link);
+
+          import(jsPath).catch((err) => {
+            console.error('Failed to load production bundle', err);
+            document.body.innerHTML = '<pre style="color:#e0e7ff;padding:2rem;font-family:monospace">Unable to load the production bundle.</pre>';
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
