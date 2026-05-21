@@ -39,6 +39,10 @@ This repo auto-deploys to GitHub Pages via `.github/workflows/deploy.yml` on eve
 2. In **Settings → Pages → Build and deployment → Source**, choose **GitHub Actions**
 3. Push to `main` — the workflow builds and deploys automatically
 
+Do not publish from the `main` branch root. Branch publishing serves the Vite source `index.html`, which points at `/src/main.jsx` instead of the production bundle and leaves GitHub Pages with a blank app screen.
+
+If the page is blank after a workflow run, switch the Pages source to **GitHub Actions** and rerun **Deploy portfolio to GitHub Pages** from the Actions tab.
+
 > ⚠️ The repo name **must** be `Portfolio` (capital P), or update `base` in `vite.config.js` to match your repo name.
 
 ---
